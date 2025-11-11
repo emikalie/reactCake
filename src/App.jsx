@@ -13,9 +13,16 @@ function App() {
 
     const [index, setIndex] = useState(0)
     const [likes, setLikes] = useState(0)
+    const [showDesc, setShowDesc] = useState(true)
+
 
     const nextImage = () => setIndex((index + 1) % images.length)
     const prevImage = () => setIndex((index - 1 + images.length) % images.length)
+    const randomImage = () => {
+        const randomIndex = Math.floor(Math.random() * images.length)
+        setIndex(randomIndex)
+    }
+
 
     return (
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
@@ -33,11 +40,30 @@ function App() {
             />
 
             <h2>{images[index].title}</h2>
-            <p style={{ color: '#555' }}>{images[index].desc}</p>
+
+            <button
+                onClick={() => setShowDesc(!showDesc)}
+                style={{
+                    marginBottom: '10px',
+                    backgroundColor: '#e8a0bf',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '8px 16px',
+                    cursor: 'pointer',
+                    color: 'white',
+                    fontWeight: 'bold'
+                }}
+            >
+                {showDesc ? 'Hide Description' : 'Show Description'}
+            </button>
+
+            {showDesc && <p style={{ color: '#555' }}>{images[index].desc}</p>}
+
 
             <div>
                 <button onClick={prevImage}>Previous</button>
                 <button onClick={nextImage}>Next</button>
+                <button onClick={randomImage}>Random Image</button>
             </div>
 
             <div style={{ marginTop: '20px' }}>
