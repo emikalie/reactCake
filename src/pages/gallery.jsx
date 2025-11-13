@@ -23,8 +23,8 @@ export default function Gallery() {
     }
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h1>My React Cake Gallery</h1>
+        <div className="page-container gallery-page">
+        <h1>My React Cake Gallery</h1>
 
             <img
                 src={images[index].src}

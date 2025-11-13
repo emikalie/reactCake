@@ -1,8 +1,8 @@
 export default function Home() {
     return (
-        <div>
-            <h1>Welcome to my Multi-Page React Site</h1>
-            <p>This is the Home page.</p>
+        <div className="page-container home-page">
+            <h1>Welcome to My Multi-Page React Site</h1>
+            <p>This is the Home page. Explore the gallery or learn more about me!</p>
         </div>
     );
 }
