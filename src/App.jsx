@@ -1,24 +1,28 @@
-import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import Gallery from "./pages/Gallery";
-import About from "./pages/About";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./Pages/Home.jsx";
+import Gallery from "./Pages/Gallery.jsx";
+import About from "./Pages/About.jsx";
+import Behind from "./Pages/Behind.jsx";
 
-function App() {
+export default function App() {
     return (
-        <Router>
-            <nav style={{ display: "flex", gap: "20px", padding: "20px" }}>
-                <Link to="/">Home</Link>
-                <Link to="/gallery">Gallery</Link>
-                <Link to="/about">About</Link>
-            </nav>
+        <BrowserRouter basename="/reactSite">
+            <div>
+                <nav>
+                    <Link to="/">Home</Link>
+                    <Link to="/gallery">Gallery</Link>
+                    <Link to="/about">About</Link>
+                    <Link to="/behind">Behind the Scenes</Link>
+                </nav>
 
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/about" element={<About />} />
-            </Routes>
-        </Router>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/gallery" element={<Gallery />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/behind" element={<Behind />} />
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
 
-export default App;

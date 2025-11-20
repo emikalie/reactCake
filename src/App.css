@@ -133,3 +133,356 @@ nav {
     max-width: none;
     padding: 20px 40px;
 }
+
+
+/* HOME PAGE ENHANCEMENTS */
+
+.home-title {
+    font-size: 42px;
+    color: var(--pink);
+    margin-bottom: 20px;
+}
+
+.home-tagline {
+    font-size: 20px;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.home-cake-animation {
+    width: 160px;
+    margin: 30px auto;
+    position: relative;
+    animation: cake-rise 1.5s ease-out forwards;
+}
+
+.cake-layer {
+    height: 25px;
+    width: 160px;
+    background: #8b5e3b;
+    margin-bottom: 6px;
+    border-radius: 4px;
+}
+
+.layer1 { background: #c49b6a; }
+.layer2 { background: #b07c4b; }
+.layer3 { background: #9b6b3d; }
+
+.cake-frosting {
+    width: 160px;
+    height: 18px;
+    background: var(--pink);
+    border-radius: 4px 4px 10px 10px;
+}
+
+.cake-cherry {
+    width: 22px;
+    height: 22px;
+    background: crimson;
+    border-radius: 50%;
+    position: absolute;
+    top: -12px;
+    left: calc(50% - 11px);
+    animation: cherry-bounce 1.2s infinite ease-in-out;
+}
+
+@keyframes cake-rise {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes cherry-bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+
+.home-message {
+    margin-top: 25px;
+    font-size: 18px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.85;
+}
+
+/* ABOUT PAGE ENHANCEMENTS */
+
+.about-page p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 15px auto;
+    opacity: 0.9;
+}
+
+.about-cake-bounce {
+    font-size: 60px;
+    margin: 30px 0;
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-15px); }
+}
+
+.about-credit {
+    margin-top: 25px;
+    opacity: 0.7;
+}
+
+.fade-in {
+    animation: fadein 1.2s ease;
+}
+
+@keyframes fadein {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.home-page {
+    min-height: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid pink;
+}
+
+/* Make root full width and full height */
+#root {
+    width: 100%;
+    max-width: none;  /* removes the centered boxed layout */
+    margin: 0;
+    padding: 0;
+}
+
+/* Make nav stretch full width and sit at top */
+nav {
+    width: 100%;
+    background: #00000044;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Push content below nav */
+.page-content {
+    padding: 40px 20px;
+}
+
+
+/* BEHIND THE SCENES – WORKFLOW */
+
+.workflow-container {
+    max-width: 900px;
+    margin: 50px auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.workflow-title {
+    color: var(--pink);
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.workflow-subtitle {
+    font-size: 18px;
+    opacity: 0.85;
+    margin-bottom: 40px;
+}
+
+.workflow-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.workflow-node {
+    position: relative;
+    margin-bottom: 60px;
+    cursor: pointer;
+}
+
+.workflow-circle {
+    fill: #2a2a2a;
+    stroke: var(--pink);
+    stroke-width: 4;
+    filter: drop-shadow(0px 0px 10px rgba(245, 169, 184, 0.6));
+    transition: 0.3s ease;
+}
+
+.workflow-node:hover .workflow-circle {
+    transform: scale(1.05);
+    filter: drop-shadow(0px 0px 15px rgba(245, 169, 184, 0.9));
+}
+
+.node-title {
+    color: var(--pink);
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.node-desc {
+    max-width: 600px;
+    font-size: 16px;
+    color: #ddd;
+    margin: 10px auto 0 auto;
+    line-height: 1.5;
+}
+
+.workflow-arrow {
+    margin: 20px 0;
+}
+
+.fade-in {
+    animation: fadein 0.8s ease;
+}
+
+@keyframes fadein {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+.code-snippet {
+    background: #111;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 12px auto 0 auto;
+    max-width: 650px;
+    text-align: left;
+    border: 1px solid #333;
+    overflow-x: auto;
+}
+
+.code-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--pink);
+    margin-bottom: 6px;
+}
+
+.code-snippet pre {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    font-family: "Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;
+    color: #f4f4f4;
+}
+
+.circle-img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--pink);
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+
+/* Initially hide the text and only show it when the section is active */
+.hide-text {
+    display: none;
+}
+
+.show-text {
+    display: block;
+}
+
+/* Optional: style for when the button is clicked */
+.code-toggle {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: var(--pink);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.code-toggle:hover {
+    background-color: #ff8b9d;
+}
+
+/* Center the "Behind the Scenes" title */
+.behind-container h1 {
+    text-align: center;
+    color: var(--pink);
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+/* Center the subtitles */
+.behind-subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: #f4f4f4;
+    margin-bottom: 40px;
+}
+
+/* Keep other existing styles */
+.step h2 {
+    text-align: center;
+    color: var(--pink); /* Ensures the color matches the theme */
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.step p {
+    text-align: center; /* Center text under image */
+    color: #f4f4f4; /* Text color consistency */
+    margin-top: 10px;
+}
+
+.circle-img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--pink);
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+/* Show/hide text */
+.hide-text {
+    display: none;
+}
+
+.show-text {
+    display: block;
+}
+
+.code-toggle {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: var(--pink);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.code-toggle:hover {
+    background-color: #ff8b9d;
+}
+
+/* Add styles for centered elements */
+.step {
+    text-align: center;
+    margin-bottom: 40px;
+}
