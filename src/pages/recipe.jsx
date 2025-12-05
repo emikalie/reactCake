@@ -101,7 +101,8 @@ const frostingSteps = [
 ];
 
 export default function Recipe() {
-    // this state controls which step is "open" and therefore "bookmarked"
+    // NEW: one state for bookmarked step, one for open video step
+    const [activeStepId, setActiveStepId] = useState(null);
     const [openStepId, setOpenStepId] = useState(null);
 
     return (
@@ -110,7 +111,8 @@ export default function Recipe() {
             <p className="recipe-intro">
                 This curated recipe is designed for actually baking the cake. Click
                 <strong> “Show Video”</strong> on a step to see exactly what that part looks like –
-                the open step is highlighted like a bookmark.
+                the open step is highlighted like a bookmark. You can also click on a step’s card
+                to toggle its bookmark on or off while you work.
             </p>
 
             <h2>Gram’s German Sweet Chocolate Cake</h2>
@@ -118,12 +120,16 @@ export default function Recipe() {
             {/* CAKE STEPS */}
             {cakeSteps.map((step) => {
                 const key = `cake-${step.id}`;
-                const isOpen = openStepId === key;
+                const isActive = activeStepId === key; // bookmark
+                const isOpen = openStepId === key;     // video
 
                 return (
                     <section
                         key={key}
-                        className={`recipe-step ${isOpen ? "recipe-step--active" : ""}`}
+                        className={`recipe-step ${isActive ? "recipe-step--active" : ""}`}
+                        onClick={() =>
+                            setActiveStepId((prev) => (prev === key ? null : key))
+                        }
                     >
                         <h3>
                             Cake Step {step.id}: {step.title}
@@ -145,13 +151,21 @@ export default function Recipe() {
                                 <button
                                     type="button"
                                     className="recipe-video-toggle"
-                                    onClick={() => setOpenStepId(isOpen ? null : key)}
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // don't toggle bookmark when clicking the button
+                                        setOpenStepId((prev) =>
+                                            prev === key ? null : key
+                                        );
+                                    }}
                                 >
                                     {isOpen ? "Hide Video" : "Show Video"}
                                 </button>
 
                                 {isOpen && (
-                                    <div className="recipe-videos">
+                                    <div
+                                        className="recipe-videos"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
                                         {step.videos.map((vid, i) => (
                                             <video key={i} src={vid} controls />
                                         ))}
@@ -168,12 +182,16 @@ export default function Recipe() {
             {/* FROSTING STEPS */}
             {frostingSteps.map((step) => {
                 const key = `frosting-${step.id}`;
+                const isActive = activeStepId === key;
                 const isOpen = openStepId === key;
 
                 return (
                     <section
                         key={key}
-                        className={`recipe-step ${isOpen ? "recipe-step--active" : ""}`}
+                        className={`recipe-step ${isActive ? "recipe-step--active" : ""}`}
+                        onClick={() =>
+                            setActiveStepId((prev) => (prev === key ? null : key))
+                        }
                     >
                         <h3>
                             Frosting Step {step.id}: {step.title}
@@ -193,13 +211,21 @@ export default function Recipe() {
                                 <button
                                     type="button"
                                     className="recipe-video-toggle"
-                                    onClick={() => setOpenStepId(isOpen ? null : key)}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setOpenStepId((prev) =>
+                                            prev === key ? null : key
+                                        );
+                                    }}
                                 >
                                     {isOpen ? "Hide Video" : "Show Video"}
                                 </button>
 
                                 {isOpen && (
-                                    <div className="recipe-videos">
+                                    <div
+                                        className="recipe-videos"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
                                         {step.videos.map((vid, i) => (
                                             <video key={i} src={vid} controls />
                                         ))}
