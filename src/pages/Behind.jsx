@@ -1,166 +1,141 @@
-// src/pages/Behind.jsx
 import { useState } from "react";
-import finishedCake from "../assets/finished-cake.jpeg";
+
+const steps = [
+    {
+        id: 1,
+        short: "Digitizing",
+        title: "From Handwritten Recipe → Structured Digital Text",
+        desc: `The project began with my grandma’s handwritten German Chocolate Cake recipe card.
+Over the years of having this treasured recipe the kitchen accidental spills ended up being to much for the very old card. So my mom and I had to copy what was on the original to a typed version then from that the project that you see today. 
+
+During transcription, I had decisions to make: how to standardize abbreviations,
+how to handle unclear measurements, and which parts were instructional vs contextual.
+This step also required evaluating what information was essential to the recipe
+and what could become metadata later (for example, family origin, date, and notes).`,
+        code: `<recipe source="handwritten-card" date="2005">
+  <title>Grandma's German Chocolate Cake</title>
+  <note origin="family-tradition">
+    Taught to me when I was twelve years old.
+  </note>
+</recipe>`
+    },
+    {
+        id: 2,
+        short: "XML Model",
+        title: "Creating the XML Schema and Encoding the Recipe",
+        desc: `The next major stage was designing how the recipe should function as structured data.
+XML allowed me to define clear elements for ingredients, equipment, preparation steps,
+multimedia references, and metadata.
+
+I created a custom Relax NG schema to enforce rules, such as:
+• ingredients must contain item and amount
+• steps must contain a number, an action, and optional media
+• media elements must include @source and @type
+
+This schema ensured consistency across different transformations and prevented
+invalid markup. Encoding the recipe in XML transformed the cake from a casual family
+object into a machine-readable artifact that can be styled, indexed, and reused.`,
+        code: `<step n="3">
+  <action>Fold egg whites gently into batter.</action>
+  <media type="video" source="folding-egg-whites.mp4"/>
+</step>`
+    },
+    {
+        id: 3,
+        short: "XSLT",
+        title: "Transforming XML into HTML with XSLT",
+        desc: `Once the XML was finalized, I wrote XSLT stylesheets to transform the content
+into clean HTML reading views. The stylesheet handles loops, conditionals,
+and template matches that determine how each XML element is displayed.
+
+Each ingredient, step, and note is turned into HTML elements like lists, headings,
+and paragraphs. This allowed the original XML to be repurposed into multiple formats
+while staying semantically meaningful.
+
+XSLT became the bridge between structured data and a human-friendly recipe page.`,
+        code: `<xsl:template match="ingredient">
+  <li>
+    <span class="amt">
+      <xsl:value-of select="@amount"/>
+    </span>
+    <span class="item">
+      <xsl:value-of select="."/>
+    </span>
+  </li>
+</xsl:template>`
+    },
+    {
+        id: 4,
+        short: "React Build",
+        title: "Rebuilding the Project as a Modern React Application",
+        desc: `The final stage was transforming everything into an interactive React website.
+Each original HTML page became a reusable component: Home, Gallery, About,
+Recipe, and Behind the Scenes.
+
+React Router manages navigation, so moving between pages does not reload the whole site.
+Images and videos are imported as ES modules and displayed conditionally. The recipe
+page uses arrays of step objects, and state, so that videos only appear when the user
+chooses.
+
+The homepage SVG cake is also "Reactified" if you will, clicking a cake layer updates state to show
+different project narratives: Cake, Grandma, Project, and Using the Site. This stage
+modernized the project and connected the archival XML work to a contemporary web stack.`,
+        code: `const [activeLayer, setActiveLayer] = useState("cake");
+
+<div
+  className="cake-layer"
+  onClick={() => setActiveLayer("project")}
+/>`
+    }
+];
 
 export default function Behind() {
-    const [active, setActive] = useState(null);       // controls showing text + button
-    const [codeShown, setCodeShown] = useState(null); // controls showing code snippet
-
-    const toggleText = (section) => {
-        setActive(active === section ? null : section);
-        setCodeShown(null); // hide code when switching sections
-    };
-
-    const toggleCode = (section) => {
-        setCodeShown(codeShown === section ? null : section);
-    };
+    const [activeId, setActiveId] = useState(1);
 
     return (
-        <div className="behind-container">
-            <h1>Behind the Scenes</h1>
-            <p className="behind-subtitle">
-                A visual breakdown of the technical process behind my German Chocolate Cake
-                digital heritage project.
+        <div className="page-container workflow-container fade-in">
+            <h1 className="workflow-title">Behind the Scenes</h1>
+            <p className="workflow-subtitle">
+                How a handwritten family recipe turned into XML, XSLT, and finally a React site.
+                Click each circle to explore what happened in that stage of the project.
             </p>
-            <p className="behind-note">Click the cake images to reveal its contents!</p>
 
-            {/* ---------- STEP 1 ---------- */}
-            <div className="step">
-                <img
-                    src={finishedCake}
-                    alt="Cake step 1"
-                    className="circle-img"
-                    onClick={() => toggleText(1)}
-                />
+            <div className="workflow-diagram">
+                {steps.map((step) => {
+                    const isActive = activeId === step.id;
+                    return (
+                        <div
+                            key={step.id}
+                            className={`workflow-node ${isActive ? "is-active" : ""}`}
+                            onClick={() => setActiveId(isActive ? null : step.id)}
+                        >
+                            <div className="workflow-circle">
+                                <span className="workflow-step-number">{step.id}</span>
+                            </div>
+                            <p className="node-title">{step.short}</p>
 
-                <h2>Handwritten Recipe ➜ Digital Form</h2>
-
-                {active === 1 && (
-                    <>
-                        <p className="step-text fade-in">
-                            The original recipe was photographed and transcribed into a structured
-                            digital format for long-term preservation.
-                        </p>
-
-                        <button className="code-toggle" onClick={() => toggleCode(1)}>
-                            {codeShown === 1 ? "Hide Code" : "Show Code"}
-                        </button>
-
-                        {codeShown === 1 && (
-                            <pre className="code-snippet fade-in">
-{`<!-- Sample XML -->
-<recipe>
-    <title>Grandma's German Chocolate Cake</title>
-    <source>2005 handwritten recipe card</source>
-</recipe>`}
-                            </pre>
-                        )}
-                    </>
-                )}
+                            {isActive && (
+                                <>
+                                    <p className="node-full-title">{step.title}</p>
+                                    <p className="node-desc">{step.desc}</p>
+                                    {step.code && (
+                                        <pre className="code-snippet">
+{step.code}
+                    </pre>
+                                    )}
+                                </>
+                            )}
+                        </div>
+                    );
+                })}
             </div>
 
-            {/* ---------- STEP 2 ---------- */}
-            <div className="step">
-                <img
-                    src={finishedCake}
-                    alt="Cake step 2"
-                    className="circle-img"
-                    onClick={() => toggleText(2)}
-                />
-
-                <h2>XML Encoding</h2>
-
-                {active === 2 && (
-                    <>
-                        <p className="step-text fade-in">
-                            I encoded tools, ingredients, instructions, and photos in XML,
-                            allowing the recipe’s structure to be machine-readable.
-                        </p>
-
-                        <button className="code-toggle" onClick={() => toggleCode(2)}>
-                            {codeShown === 2 ? "Hide Code" : "Show Code"}
-                        </button>
-
-                        {codeShown === 2 && (
-                            <pre className="code-snippet fade-in">
-{`<equipment>
-    <tool xml:id="mixer">Stand mixer</tool>
-    <tool xml:id="cakepans">3 round cake pans</tool>
-</equipment>`}
-                            </pre>
-                        )}
-                    </>
-                )}
-            </div>
-
-            {/* ---------- STEP 3 ---------- */}
-            <div className="step">
-                <img
-                    src={finishedCake}
-                    alt="Cake step 3"
-                    className="circle-img"
-                    onClick={() => toggleText(3)}
-                />
-
-                <h2>XSLT Transformation</h2>
-
-                {active === 3 && (
-                    <>
-                        <p className="step-text fade-in">
-                            Using XSLT, I transformed the XML into styled HTML pages for the website.
-                        </p>
-
-                        <button className="code-toggle" onClick={() => toggleCode(3)}>
-                            {codeShown === 3 ? "Hide Code" : "Show Code"}
-                        </button>
-
-                        {codeShown === 3 && (
-                            <pre className="code-snippet fade-in">
-{`<xsl:template match="ingredient">
-<li>
-  <xsl:value-of select="item"/>
-</li>
-</xsl:template>`}
-                            </pre>
-                        )}
-                    </>
-                )}
-            </div>
-
-            {/* ---------- STEP 4 ---------- */}
-            <div className="step">
-                <img
-                    src={finishedCake}
-                    alt="Cake step 4"
-                    className="circle-img"
-                    onClick={() => toggleText(4)}
-                />
-
-                <h2>Schema Validation</h2>
-
-                {active === 4 && (
-                    <>
-                        <p className="step-text fade-in">
-                            I built a Relax NG schema to validate the XML’s structure, ensuring
-                            the recipe follows rules for consistency and accuracy.
-                        </p>
-
-                        <button className="code-toggle" onClick={() => toggleCode(4)}>
-                            {codeShown === 4 ? "Hide Code" : "Show Code"}
-                        </button>
-
-                        {codeShown === 4 && (
-                            <pre className="code-snippet fade-in">
-{`element recipe {
-    element title { text },
-    element ingredients { ingredient+ }
-}`}
-                            </pre>
-                        )}
-                    </>
-                )}
-            </div>
-
+            <p className="behind-note">
+                This page is written for DIGIT students and anyone curious about the technical
+                workflow behind the cake site.
+            </p>
         </div>
     );
 }
+
+

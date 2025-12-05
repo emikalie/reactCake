@@ -278,82 +278,6 @@ nav {
     padding: 40px 20px;
 }
 
-
-/* BEHIND THE SCENES – WORKFLOW */
-
-.workflow-container {
-    max-width: 900px;
-    margin: 50px auto;
-    text-align: center;
-    padding: 20px;
-}
-
-.workflow-title {
-    color: var(--pink);
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-.workflow-subtitle {
-    font-size: 18px;
-    opacity: 0.85;
-    margin-bottom: 40px;
-}
-
-.workflow-diagram {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.workflow-node {
-    position: relative;
-    margin-bottom: 60px;
-    cursor: pointer;
-}
-
-.workflow-circle {
-    fill: #2a2a2a;
-    stroke: var(--pink);
-    stroke-width: 4;
-    filter: drop-shadow(0px 0px 10px rgba(245, 169, 184, 0.6));
-    transition: 0.3s ease;
-}
-
-.workflow-node:hover .workflow-circle {
-    transform: scale(1.05);
-    filter: drop-shadow(0px 0px 15px rgba(245, 169, 184, 0.9));
-}
-
-.node-title {
-    color: var(--pink);
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.node-desc {
-    max-width: 600px;
-    font-size: 16px;
-    color: #ddd;
-    margin: 10px auto 0 auto;
-    line-height: 1.5;
-}
-
-.workflow-arrow {
-    margin: 20px 0;
-}
-
-.fade-in {
-    animation: fadein 0.8s ease;
-}
-
-@keyframes fadein {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-
 /* For the Code Snippets and Gallery Styling */
 
 .code-snippet {
@@ -462,4 +386,310 @@ nav {
     line-height: 1.5;
 }
 
+.cake-layer,
+.cake-cherry {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
+.cake-layer:hover,
+.cake-cherry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 8px rgba(245, 169, 184, 0.7);
+}
+
+.home-instruction {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* RECIPE PAGE IMAGE SIZING & LAYOUT */
+
+/* Make all recipe images scale nicely */
+.recipe-step img {
+    width: 100%;
+    max-width: 500px;      /* prevents giant images */
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 10px auto;     /* centers images */
+    object-fit: cover;
+}
+
+/* Row layout for multiple images */
+.photo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.photo-row figure {
+    margin: 0;
+}
+
+/* Keep videos under control too */
+.recipe-video-wrapper video {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    display: block;
+    margin: 10px auto;
+}
+
+/* ================== RECIPE PAGE LAYOUT ================== */
+
+.recipe-page h1 {
+    font-size: 36px;
+    color: var(--pink);
+    margin-bottom: 10px;
+}
+
+.recipe-intro {
+    max-width: 800px;
+    margin: 0 auto 24px auto;
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.recipe-step {
+    margin: 24px auto;
+    padding: 20px;
+    max-width: 900px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    background: rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+
+/* Images: STACKED, centered */
+.recipe-images {
+    margin-top: 12px;
+}
+
+.recipe-images img {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+/* Button to toggle videos */
+.recipe-video-toggle {
+    margin-top: 12px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--pink);
+    background: #1a1a1a;
+    color: var(--pink);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-video-toggle:hover {
+    background: var(--pink);
+    color: #000;
+    box-shadow: 0 0 8px rgba(245, 169, 184, 0.7);
+}
+
+/* Videos: side-by-side when there is room */
+.recipe-videos {
+    margin-top: 14px;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    align-items: center;
+    justify-items: center;
+}
+
+.recipe-videos video {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 10px;
+    display: block;
+}
+
+/* BEHIND THE SCENES Page */
+
+.workflow-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.workflow-title {
+    color: var(--pink);
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.workflow-subtitle {
+    font-size: 18px;
+    opacity: 0.85;
+    margin-bottom: 40px;
+}
+
+/* Horizontal layout */
+.workflow-diagram {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(160px, 1fr));
+    gap: 24px;
+    justify-items: center;
+    margin-top: 40px;
+}
+
+/* The connecting line that runs west ➜ east */
+.workflow-diagram::before {
+    content: "";
+    position: absolute;
+    top: 40px;            /* roughly through the middle of the circles */
+    left: 5%;
+    right: 5%;
+    height: 3px;
+    background: linear-gradient(
+            to right,
+            rgba(245, 169, 184, 0.1),
+            rgba(245, 169, 184, 0.6),
+            rgba(245, 169, 184, 0.1)
+    );
+    z-index: 0;
+}
+
+.workflow-node {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 10px;
+}
+
+/* Circle for each step */
+.workflow-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #2a2a2a;
+    border: 3px solid var(--pink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(245, 169, 184, 0.6);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    position: relative;
+    z-index: 1; /* keeps circle above the line */
+}
+
+.workflow-step-number {
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--pink);
+}
+
+.workflow-node:hover .workflow-circle,
+.workflow-node.is-active .workflow-circle {
+    transform: scale(1.05);
+    box-shadow: 0 0 16px rgba(245, 169, 184, 0.9);
+    background: #333;
+}
+
+.node-title {
+    color: var(--pink);
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.node-full-title {
+    margin-top: 6px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.node-desc {
+    max-width: 220px;
+    font-size: 14px;
+    color: #ddd;
+    margin: 8px auto 0 auto;
+    line-height: 1.5;
+}
+
+.code-snippet {
+    margin-top: 10px;
+    text-align: left;
+    font-size: 12px;
+    background: #111;
+    color: #f4f4f4;
+    padding: 10px 14px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.behind-note {
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+/* Small screens: let the steps wrap nicely */
+@media (max-width: 800px) {
+    .workflow-diagram {
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+        row-gap: 30px;
+    }
+
+    .workflow-diagram::before {
+        top: 40px;
+        left: 10%;
+        right: 10%;
+    }
+}
+
+@media (max-width: 500px) {
+    .workflow-diagram {
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-diagram::before {
+        display: none; /* line looks weird when it’s just one column */
+    }
+}
+/* RECIPE BOOKMARK HIGHLIGHT  */
+
+/* base style already exists, this just adds nicer hover */
+.recipe-step:hover {
+    background: rgba(0, 0, 0, 0.65);
+}
+
+/* active = "bookmarked" step */
+.recipe-step--active {
+    border-color: var(--pink);
+    box-shadow: 0 0 12px rgba(245, 169, 184, 0.7);
+    position: relative;
+}
+
+/* little ribbon bookmark at the top-left of the active step */
+.recipe-step--active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 18px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 18px solid var(--pink);
+}
+
+.home-dynamic-text {
+    transition: color 0.35s ease;
+}
