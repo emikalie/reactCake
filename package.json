@@ -1,8 +1,8 @@
 {
-  "name": "reactsite",
+  "name": "reactcake",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://emikalie.github.io/reactSite",
+  "homepage": "https://emikalie.github.io/reactCake",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

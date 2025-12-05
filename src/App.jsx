@@ -9,7 +9,7 @@ import "./App.css";
 
 export default function App() {
     return (
-        <BrowserRouter basename="/reactSite">
+        <BrowserRouter basename="/reactCake">
             <div className="app-root">
                 <nav>
                     <Link to="/">Home</Link>
