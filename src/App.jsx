@@ -4,7 +4,9 @@ import Home from "./Pages/Home.jsx";
 import Gallery from "./Pages/Gallery.jsx";
 import About from "./Pages/About.jsx";
 import Behind from "./Pages/Behind.jsx";
-import Recipe from "./Pages/Recipe.jsx";   
+import Recipe from "./Pages/Recipe.jsx";
+import People from "./Pages/People.jsx";
+import Footer from "./Pages/footer.jsx";
 import "./App.css";
 
 export default function App() {
@@ -15,7 +17,8 @@ export default function App() {
                     <Link to="/">Home</Link>
                     <Link to="/gallery">Gallery</Link>
                     <Link to="/about">About</Link>
-                    <Link to="/recipe">Recipe</Link> {/* NEW LINK */}
+                    <Link to="/people">People</Link>
+                    <Link to="/recipe">Recipe</Link>
                     <Link to="/behind">Behind the Scenes</Link>
                 </nav>
 
@@ -24,9 +27,11 @@ export default function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/gallery" element={<Gallery />} />
                         <Route path="/about" element={<About />} />
-                        <Route path="/recipe" element={<Recipe />} /> {/* NEW ROUTE */}
+                        <Route path="/people" element={<People />} />
+                        <Route path="/recipe" element={<Recipe />} />
                         <Route path="/behind" element={<Behind />} />
                     </Routes>
+                    <Footer />
                 </div>
             </div>
         </BrowserRouter>

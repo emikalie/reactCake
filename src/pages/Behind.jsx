@@ -134,6 +134,19 @@ export default function Behind() {
                 This page is written for DIGIT students and anyone curious about the technical
                 workflow behind the cake site.
             </p>
+
+            <div className="repo-link-container">
+                <h2 className="repo-title">View the Project on GitHub</h2>
+                <a
+                    className="repo-link"
+                    href="https://github.com/emikalie/reactCake"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    reactCake GitHub Repository
+                </a>
+            </div>
+
         </div>
     );
 }

@@ -7,14 +7,14 @@ const layerData = {
         color: "crimson"
     },
     frosting: {
-        title: "Frosting Layer",
+        title: " Top Frosting Layer",
         text: "The frosting connects everything together and makes it feel finished. It stands for the design, media, and user experience choices that make this project inviting to explore.",
         color: "#f5a9b8"
     },
     layer1: {
         // this is the bottom brown layer (closest to the frosting)
         title: "Bottom Cake Layer",
-        text: "The top cake layer represents the final pass of the project: the React site that pulls together the XML data, XSLT transformations, and media into an interactive experience.",
+        text: "The bottom cake layer represents the final pass of the project: the React site that pulls together the XML data, XSLT transformations, and media into an interactive experience.",
         color: "#c49b6a"
     },
     layer2: {
@@ -25,8 +25,8 @@ const layerData = {
     },
     layer3: {
         // this is the top brown layer
-        title: "Top Cake Layer",
-        text: "The bottom cake layer stands for the foundation of the project: the original handwritten recipe, careful transcription, and decisions about what information to preserve.",
+        title: "First Cake Layer",
+        text: "The top cake layer stands for the foundation of the project: the original handwritten recipe, careful transcription, and decisions about what information to preserve.",
         color: "#9b6b3d"
     }
 };
@@ -45,39 +45,15 @@ export default function Home() {
 
             {/* CAKE STACK */}
             <div className="home-cake-animation">
-                {/* Top-down visual order you described:
-                    cherry on top
-                    frosting layer
-                    top layer
-                    middle layer
-                    bottom layer
-                */}
-
-                {/* BOTTOM brown layer */}
+                {/* Cherry on top */}
                 <div
-                    className="cake-layer layer3"
-                    onClick={() => setActiveKey("layer3")}
+                    className="cake-cherry"
+                    onClick={() => setActiveKey("cherry")}
                     role="button"
-                    aria-label="Bottom cake layer"
+                    aria-label="Cherry (about my grandma)"
                 ></div>
 
-                {/* MIDDLE brown layer */}
-                <div
-                    className="cake-layer layer2"
-                    onClick={() => setActiveKey("layer2")}
-                    role="button"
-                    aria-label="Middle cake layer"
-                ></div>
-
-                {/* TOP brown layer */}
-                <div
-                    className="cake-layer layer1"
-                    onClick={() => setActiveKey("layer1")}
-                    role="button"
-                    aria-label="Top cake layer"
-                ></div>
-
-                {/* Frosting */}
+                {/* Frosting just under the cherry */}
                 <div
                     className="cake-frosting"
                     onClick={() => setActiveKey("frosting")}
@@ -85,14 +61,31 @@ export default function Home() {
                     aria-label="Frosting layer"
                 ></div>
 
-                {/* Cherry */}
+                {/* TOP cake layer (just under the frosting) */}
                 <div
-                    className="cake-cherry"
-                    onClick={() => setActiveKey("cherry")}
+                    className="cake-layer layer3"
+                    onClick={() => setActiveKey("layer3")}
                     role="button"
-                    aria-label="Cherry (about my grandma)"
+                    aria-label="Top cake layer"
+                ></div>
+
+                {/* MIDDLE cake layer */}
+                <div
+                    className="cake-layer layer2"
+                    onClick={() => setActiveKey("layer2")}
+                    role="button"
+                    aria-label="Middle cake layer"
+                ></div>
+
+                {/* BOTTOM cake layer */}
+                <div
+                    className="cake-layer layer1"
+                    onClick={() => setActiveKey("layer1")}
+                    role="button"
+                    aria-label="Bottom cake layer"
                 ></div>
             </div>
+
 
             <p className="home-message">
                 Click the cherry, frosting, or any cake layer to see what part of the project it represents.

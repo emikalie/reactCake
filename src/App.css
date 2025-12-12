@@ -170,9 +170,10 @@ nav {
 
 .cake-frosting {
     width: 160px;
-    height: 18px;
+    height: 22px;                        /* taller frosting */
     background: var(--pink);
-    border-radius: 4px 4px 10px 10px;
+    border-radius: 10px 10px 4px 4px;    /* smoother edges */
+    margin-bottom: 6px;                  /* spacing to match cake layers */
 }
 
 .cake-cherry {
@@ -387,16 +388,19 @@ nav {
 }
 
 .cake-layer,
-.cake-cherry {
+.cake-cherry,
+.cake-frosting {
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cake-layer:hover,
-.cake-cherry:hover {
+.cake-cherry:hover,
+.cake-frosting:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 8px rgba(245, 169, 184, 0.7);
 }
+
 
 .home-instruction {
     margin-top: 10px;
@@ -694,3 +698,152 @@ nav {
     transition: color 0.35s ease;
 }
 
+/* ===== GALLERY PAGE FIXES (SCOPED) ===== */
+
+/* Keep all gallery content in a centered column */
+.gallery-page {
+    max-width: 1000px;
+    margin: 80px auto 60px;
+    padding: 0 20px 40px;
+    text-align: center;
+}
+
+/* Main gallery photos – but NOT the small circular ones */
+.gallery-page img:not(.circle-img) {
+    width: 100%;
+    max-width: 500px;      /* keeps the big batter photo from being HUGE */
+    height: auto;
+    display: block;
+    margin: 20px auto 30px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(255, 182, 193, 0.4);
+    object-fit: cover;
+}
+
+/* Circle images and step sections – scoped so they don't affect other pages */
+.gallery-page .circle-img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--pink);
+    display: block;
+    margin: 0 auto 20px auto;
+    transition: transform 0.3s ease;
+}
+
+.gallery-page .circle-img:hover {
+    transform: scale(1.05);
+}
+
+/* Each gallery "step" / block */
+.gallery-page .step {
+    margin-bottom: 60px;
+    padding: 20px;
+    text-align: center;
+}
+
+.gallery-page .step h2 {
+    color: var(--pink);
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Text under each image */
+.gallery-page .step-text {
+    margin-top: 15px;
+    color: #f4f4f4;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* NEW PEOPLE PAGE */
+
+.people-container {
+    text-align: center;
+}
+
+.people-title {
+    font-size: 32px;
+    color: var(--pink);
+    margin-bottom: 10px;
+}
+
+.people-intro {
+    max-width: 750px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.people-card-2 {
+    background: #252525;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #444;
+    transition: 0.3s ease;
+}
+
+.people-card-2:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 14px rgba(245, 169, 184, 0.5);
+    border-color: var(--pink);
+}
+
+.people-photo-2 {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.people-name {
+    font-size: 22px;
+    color: var(--pink);
+    margin-bottom: 10px;
+}
+
+.people-description {
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.85;
+}
+
+.people-note {
+    margin-top: 40px;
+    font-size: 14px;
+    opacity: 0.8;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #ffd1dc;
+    text-decoration: none;
+    font-size: 16px;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s ease;
+    display: inline-block;
+    padding: 0 6px;
+}
